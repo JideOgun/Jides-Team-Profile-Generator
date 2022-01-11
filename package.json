@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "inquirer": "^8.2.0",
+    "jshint": "^2.13.3"
+  },
+  "devDependencies": {
+    "jest": "^27.4.7"
+  }
+}
