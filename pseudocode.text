@@ -1,0 +1,22 @@
+create Employee object that will be used to store information about the employee.
+create tests for the employee object
+Add properties and methods for employee object - name, id, email, getName(), getId(), getEmail(), getRole()//returns Employee.
+
+
+create Manager object that will be used to store information about the employee.
+create tests for the manager object
+Add extra properties and methods for manager object - office number, getRole() // returns manager.
+
+
+
+create Engineer object that will be used to store information about the employee.
+create tests for the Engineer object
+Add extra properties and  methods for Engineer - github//Github username, getGithub(), getRole() // returns Engineer
+
+
+
+create Intern object that will be used to store information about the employee.
+create tests for the Intern object
+Add extra properties and methods for intern object - school, getschool(), getRole() // returns intern
+
+add Validation.
