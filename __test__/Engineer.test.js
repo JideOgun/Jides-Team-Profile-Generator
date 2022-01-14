@@ -3,7 +3,7 @@ const Engineer = require('../lib/Engineer');
 test('makes an Engineer github object', () => {
     const engineer = new Engineer('Jide');
 
-    expect(engineer.github).toBe('jideogun');
+    expect(engineer.github).toEqual(expect.any(String));
 });
 
 test('gets Engineer github as an object', () => {

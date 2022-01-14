@@ -6,7 +6,7 @@ describe('Employee', () => {
 test('creates an employee name, id, and email object',  () => {
     const employee = new Employee('Bob');
 
-    expect(employee.name).toBe('Bob');
+    expect(employee.name).toEqual(expect.any(String));
     expect(employee.id).toEqual(expect.any(Number));
     expect(employee.email).toEqual(expect.any(String));
 });
@@ -25,7 +25,7 @@ test('gets employee Id as an object', () => {
  expect(employee.getId()).toHaveProperty('id');
 });
 
-test('gets employee emailas an object', () => {
+test('gets employee email as an object', () => {
     const employee = new Employee('Bob');
 
     expect(employee.getEmail()).toHaveProperty('email');
