@@ -3,14 +3,18 @@ const Engineer = require('../lib/Engineer');
 const Intern = require('../lib/Intern');
 const Employee = require('../lib/Employee.js');
 const fs = require('fs');
+const index = require('../index');
+
 
 // const profileDataArgs = process.argv.slice(2, process.argv.length);
 
 // const [name, github] = profileDataArgs;
 
 module.exports = templateData => {
-    console.log(templateData);
-    // const { id, email, name, officenumber, employees, github, school} = templateData;
+    // console.log(templateData);
+    // const { firstname } = templateData;
+
+
   return `
   <!DOCTYPE html> 
   <html lang="en"> 
@@ -28,9 +32,11 @@ module.exports = templateData => {
     <div class='card'>Team Member 3</div>
     <div class='card'>Team Member 4</div>
 
-    ${Employee.email}
+    
+    ${Intern.name}
+    ${Engineer.github}
     ${Manager.officenumber}
-    ${templateData}
+   
    
     
 

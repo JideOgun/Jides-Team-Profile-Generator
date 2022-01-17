@@ -3,6 +3,7 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const inquirer = require('inquirer');
+const { writeFile } = require('./utils/generate-site');
 
 const fs = require('fs');
 const generatePage = require('./src/page-template');
@@ -14,7 +15,7 @@ const generatePage = require('./src/page-template');
       return inquirer.prompt(
     [  {
         type: 'input',
-        name: 'name',
+        name: 'firstname',
         message: "What is the team manager's name?",
         validate: nameInput => {
             if(nameInput) {
@@ -66,8 +67,8 @@ const generatePage = require('./src/page-template');
         }
       }
     ]).then(({name, email, id, officenumber}) => {
-      this.manager = new Manager(name, email, id, officenumber);
-      console.log(this.manager);
+      const manager = new Manager(name, email, id, officenumber);
+      console.log(manager);
     })
     ;
     }
@@ -140,8 +141,8 @@ const generatePage = require('./src/page-template');
       },
     ]
       ).then(({name, github, email, id}) => {
-        this.engineer = new Engineer(name, github, email, id);
-        console.log(this.engineer);
+        const engineer = new Engineer(name, github, email, id);
+        console.log(engineer);
         
       });
       
@@ -204,8 +205,8 @@ const generatePage = require('./src/page-template');
       },
     ]
     ).then(({name, school, email, id}) => {
-      this.intern = new Intern(name, school, email, id);
-      console.log(this.intern);
+      const intern = new Intern(name, school, email, id);
+      console.log(intern);
     });
     
     
@@ -216,21 +217,23 @@ const generatePage = require('./src/page-template');
      console.log(employees[0]);
      if(employees[0] === 'Engineer') {
      PromptEngineerQuestions().then(answer => {
-      const pageHTML = generatePage(answer);
-      console.log(answer);
-      fs.writeFile('./index.html', pageHTML, err => {
-        if (err) throw new Error(err);
-
-        console.log('Page created!');
-      });
+      return generatePage(answer);
+      
+     }).then(readmePage => {
+      return writeFile(readmePage);
+  }).then(writeFileResponse => {
+      console.log(writeFileResponse);
+      return ;
+  }).catch(err => {
+      console.log(err);
+});
     //  const pageHTML = generatePage(answer);
     
-      });
-    }
+      }
     else if (employees[0] === 'Intern') {  
-            PromptInternQuestions().then(answer => {
-              const pageHTML = generatePage(answer);
-              console.log(answer);
+            PromptInternQuestions().then(answers => {
+              const pageHTML = generatePage(answers);
+              console.log(answers);
               fs.writeFile('./index.html', pageHTML, err => {
                 if (err) throw new Error(err);
         
