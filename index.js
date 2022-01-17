@@ -13,26 +13,57 @@ Employee.prototype.initializeEmployee = function() {
     [  {
         type: 'input',
         name: 'name',
-        message: "What is the team manager's name?"
+        message: "What is the team manager's name?",
+        validate: nameInput => {
+            if(nameInput) {
+                return true;
+            } else {
+                console.log("Please enter the manager's name!");
+                return false;
+            }
+        }
       },
       {
         type: 'input',
         name: 'email',
-        message: "What is the manager's email address?"
+        message: "What is the manager's email address?",
+        validate: emailInput => {
+            if(emailInput) {
+                return true;
+            } else {
+                console.log('Please enter your email address!');
+                return false;
+            }
+        }
       },
       {
         type: 'input',
         name: 'id',
-        message: "What is the manager's employee id?"
+        message: "What is the manager's employee id?",
+        validate: numInput => {
+            if(numInput) {
+                return true;
+            } else {
+                console.log("Please enter the manager employee id!");
+                return false;
+            }
+        }
       },
      
       {
         type: 'input',
         name: 'officenumber',
-        message: "What is the manager's office number?"
+        message: "What is the manager's office number?",
+        validate: officenoInput => {
+            if(officenoInput) {
+                return true;
+            } else {
+                console.log("Please enter the manager office number!");
+                return false;
+            }
+        }
       }
-    ]
-      );
+    ]);
     }
     
     function PromptEmployeeOptions (employees) {
@@ -58,23 +89,55 @@ Employee.prototype.initializeEmployee = function() {
       [  {
           type: 'input',
           name: 'name',
-          message: "What is the Engineer's name?"
+          message: "What is the Engineer's name?",
+          validate: engrname => {
+            if(engrname) {
+                return true;
+            } else {
+                console.log("Please enter the Engineer's name!");
+                return false;
+            }
+        }
         },
         {
           type: 'input',
           name: 'email',
-          message: "What is the Engineer's email address?"
+          message: "What is the Engineer's email address?",
+          validate: engremail => {
+            if(engremail) {
+                return true;
+            } else {
+                console.log("Please enter the Engineer's email!");
+                return false;
+            }
+        }
         },
         {
           type: 'input',
           name: 'id',
-          message: "What is the Engineer's employee id?"
+          message: "What is the Engineer's employee id?",
+          validate: engrid => {
+            if(engrid) {
+                return true;
+            } else {
+                console.log("Please enter the Engineer's id!");
+                return false;
+            }
+        }
         },
        
         {
           type: 'input',
           name: 'github',
-          message: "What is the Engineer's github username?"
+          message: "What is the Engineer's github username?",
+          validate: engrgit => {
+            if(engrgit) {
+                return true;
+            } else {
+                console.log("Please enter the Engineer's github username!");
+                return false;
+            }
+        }
         },
       ]
         );
@@ -91,23 +154,55 @@ Employee.prototype.initializeEmployee = function() {
             {
               type: 'input',
               name: 'name',
-              message: "What is the Intern's name?"
+              message: "What is the Intern's name?",
+              validate: intname => {
+                if(intname) {
+                    return true;
+                } else {
+                    console.log("Please enter the Intern's name!");
+                    return false;
+                }
+            }
             },
             {
               type: 'input',
               name: 'email',
-              message: "What is the Intern's email address?"
+              message: "What is the Intern's email address?",
+              validate: intemail => {
+                if(intemail) {
+                    return true;
+                } else {
+                    console.log("Please enter the Intern's email!");
+                    return false;
+                }
+            }
             },
             {
-              type: 'input',
+              type: 'number',
               name: 'id',
-              message: "What is the Intern's employee id?"
+              message: "What is the Intern's employee id?",
+              validate: intid => {
+                if(intid) {
+                    return true;
+                } else {
+                    console.log("Please enter theInterns id!");
+                    return false;
+                }
+            }
             },
            
             {
               type: 'input',
               name: 'school',
-              message: "What is the Intern's school?"
+              message: "What is the Intern's school?",
+              validate: intsch => {
+                if(intsch) {
+                    return true;
+                } else {
+                    console.log("Please enter the Interns school!");
+                    return false;
+                }
+            }
             },
           ]
           );
