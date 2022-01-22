@@ -9,13 +9,13 @@ const fs = require('fs');
 const generatePage = require('./src/page-template');
 
 
+    const teamArray = [];
 
-
-    function PromptManagerQuestions (answers) {
+    const PromptManagerQuestions = () => {
       return inquirer.prompt(
     [  {
         type: 'input',
-        name: 'firstname',
+        name: 'name',
         message: "What is the team manager's name?",
         validate: nameInput => {
             if(nameInput) {
@@ -69,22 +69,29 @@ const generatePage = require('./src/page-template');
     ]).then(({name, email, id, officenumber}) => {
       const manager = new Manager(name, email, id, officenumber);
       console.log(manager);
+      teamArray.push(manager);
     })
     ;
-    }
+    };
     
-    function PromptEmployeeOptions (employees) {
+    const PromptEmployeeOptions = () => {
+
       return inquirer.prompt(
+        [{
+          type: 'confirm',
+          name: 'employeeconfirm',
+          message: 'Would you like to add employees to your team'
+        },
         {
           type: 'checkbox',
           name: 'employees',
           message: 'Add Employees or finish building team',
-          choices: ['Engineer', 'Intern', 'Finish building team'],
-        }
+          choices: ['Engineer', 'Intern'],
+        }]
       );
-    }
+    };
 
-    PromptEngineerQuestions = function (answer) {
+    const PromptEngineerQuestions = (engrData) => {
       return inquirer.prompt(
     [  {
         type: 'input',
@@ -139,16 +146,15 @@ const generatePage = require('./src/page-template');
           }
       }
       },
-    ]
-      ).then(({name, github, email, id}) => {
+    ]).then(({name, github, email, id}) => {
         const engineer = new Engineer(name, github, email, id);
         console.log(engineer);
-        
+        teamArray.push(engineer);
       });
       
     };
     
-    PromptInternQuestions = function (answers) {
+    const PromptInternQuestions = (answers) => {
       return inquirer.prompt([
       {
         type: 'input',
@@ -207,6 +213,7 @@ const generatePage = require('./src/page-template');
     ).then(({name, school, email, id}) => {
       const intern = new Intern(name, school, email, id);
       console.log(intern);
+      teamArray.push(intern);
     });
     
     
@@ -217,30 +224,27 @@ const generatePage = require('./src/page-template');
      console.log(employees[0]);
      if(employees[0] === 'Engineer') {
      PromptEngineerQuestions().then(answer => {
-      return generatePage(answer);
+      return generatePage(teamArray);
       
-     }).then(readmePage => {
-      return writeFile(readmePage);
+     }).then(HTMLpage => {
+      return writeFile(HTMLpage);
   }).then(writeFileResponse => {
       console.log(writeFileResponse);
       return ;
   }).catch(err => {
       console.log(err);
-});
-    //  const pageHTML = generatePage(answer);
-    
+});  
       }
     else if (employees[0] === 'Intern') {  
             PromptInternQuestions().then(answers => {
-              const pageHTML = generatePage(answers);
-              console.log(answers);
-              fs.writeFile('./index.html', pageHTML, err => {
-                if (err) throw new Error(err);
-        
-                console.log('Page created!');
-              });
-            //  const pageHTML = generatePage(answer);
-            
+              return generatePage(teamArray);
+            }).then(HTMLpage => {
+              return writeFile(HTMLpage);
+          }).then(writeFileResponse => {
+              console.log(writeFileResponse);
+              return ;
+          }).catch(err => {
+              console.log(err);
               });
             }
     
@@ -249,18 +253,6 @@ const generatePage = require('./src/page-template');
      }
      });
      
-     
-     
-    // .then(answer => {
-    //    const pageHTML = generatePage(answer);
-
-    //    fs.writeFile('./index.html', pageHTML, err => {
-    //      if (err) throw new Error(err);
-
-    //      console.log('Page created!');
-    //    });
-    //  })
-    // ;
     
 
 
