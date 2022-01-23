@@ -1,4 +1,26 @@
 
+// const genCards = (team) => {
+//     var cardArr = [];
+
+//     for(var i = 0; i < team.length; i++) {
+//         const employee = team[i];
+//         const role = employee.getRole();
+
+//         if(role === 'Manager') {
+//             const manCard = genManagerCard(employee);
+
+//             cardArr.push(manCard);
+//             console.log(cardArr);
+//         } else if (role === "Engineer") {
+//             const engrCard = genEngineerCard(employee);
+//             cardArr.push(engrCard);
+//         } else if (role === "Intern") {
+//             const intCard = genInternCard(employee);
+//             cardArr.push(intCard);
+//         }
+//     }
+// };
+
 
    const genManagerCard = (mgrInfo) => {
     if(!mgrInfo) {
@@ -79,7 +101,7 @@ const genInternCard = (intInfo) => {
 
 module.exports = templateData => {
     const [ manager, engineer, intern, ...teamArray ] = templateData;
-    console.log(templateData);
+    console.log(teamArray);
     
     for(var i = 0; i < templateData.length; i++) {
       return `
@@ -99,7 +121,7 @@ module.exports = templateData => {
         <h1>MY TEAM</h1>
         </div>
 
-        ${genCards(teamArray)}
+        
     
         ${genManagerCard(manager)}
         ${genEngineerCard(engineer)}
