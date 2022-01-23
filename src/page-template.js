@@ -28,7 +28,7 @@ const genCards = (templateData) => {
         return '';
     }
     return `
-    <section class="mgr-info container text-white">
+    <section class="mgr-info container text-white .col-md-4 .col-md-offset-4">
     <div class="card mgr-card border-danger text-center" style="width: 18rem"> 
     <ul class="list-group list-group-flush">
     <li class="list-group-item bg-primary">
@@ -54,7 +54,7 @@ const genEngineerCard = (engrInfo) => {
         return '';
     }
     return `
-    <section class="engr-info container text-white">
+    <section class="engr-info container text-white .col-md-4 .col-md-offset-4">
     <div class="card engr-card border-danger text-center" style="width: 18rem">
     <ul class="list-group list-group-flush">
     <li class="list-group-item bg-primary">
@@ -80,7 +80,7 @@ const genInternCard = (intInfo) => {
         return '';
     }
     return `
-    <section class="int-info container text-white">
+    <section class="int-info container text-white .col-md-4 .col-md-offset-4">
     <div class="card int-card border-danger text-center" style="width: 18rem">
     <ul class="list-group list-group-flush">
     <li class="list-group-item bg-primary">
@@ -123,7 +123,12 @@ module.exports = templateData => {
         <div>
         <h1 class="team bg-danger text-center">MY TEAM</h1>
         </div> 
+        <div class="container">
+        <div class="row">
         ${genCards(templateData)}
+
+        </div>
+        </div>
         </body>
         </html>`;
     
