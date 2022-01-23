@@ -9,11 +9,11 @@ test('makes an Intern school object', () => {
 test('gets interns school as an object', () => {
     const intern = new Intern('Jay');
 
-    expect(intern.getSchool()).toHaveProperty('school');
+    expect(intern.getSchool()).toEqual(expect.any(String));
 });
 
 test('gets interns role as an object and returns Intern', () => {
     const intern = new Intern('Jay');
 
-    expect(intern.getRole()).toHaveProperty('role', 'Intern');
+    expect(intern.getRole()).toEqual(expect.any(String));
 });

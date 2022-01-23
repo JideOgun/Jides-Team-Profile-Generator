@@ -8,5 +8,5 @@ test('Makes officenumber object', () => {
 
 test('gets role as an object and returns Manager', () => {
     const manager = new Manager('Brian');
-    expect(manager.getRole()).toHaveProperty('role', 'Manager');
+    expect(manager.getRole()).toEqual(expect.any(String));
 });

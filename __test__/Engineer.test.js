@@ -9,11 +9,11 @@ test('makes an Engineer github object', () => {
 test('gets Engineer github as an object', () => {
     const engineer = new Engineer('Jide');
 
-    expect(engineer.getGithub()).toHaveProperty('githubUsername');
+    expect(engineer.getGithub()).toEqual(expect.any(String));
 });
 
 test('gets role as an object and returns Engineer', () => {
     const engineer = new Engineer('Jide'); 
 
-    expect(engineer.getRole()).toHaveProperty('role', 'Engineer');
+    expect(engineer.getRole()).toEqual(expect.any(String));
 });

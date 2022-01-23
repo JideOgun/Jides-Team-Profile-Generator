@@ -1,25 +1,26 @@
 
-// const genCards = (team) => {
-//     var cardArr = [];
+const genCards = (templateData) => {
+    var cardArr = [];
 
-//     for(var i = 0; i < team.length; i++) {
-//         const employee = team[i];
-//         const role = employee.getRole();
+    for(var i = 0; i < templateData.length; i++) {
+        const employee = templateData[i];
+        const role = employee.getRole();
 
-//         if(role === 'Manager') {
-//             const manCard = genManagerCard(employee);
+        if(role === 'Manager') {
+            const manCard = genManagerCard(employee);
 
-//             cardArr.push(manCard);
-//             console.log(cardArr);
-//         } else if (role === "Engineer") {
-//             const engrCard = genEngineerCard(employee);
-//             cardArr.push(engrCard);
-//         } else if (role === "Intern") {
-//             const intCard = genInternCard(employee);
-//             cardArr.push(intCard);
-//         }
-//     }
-// };
+            cardArr.push(manCard);
+            console.log(cardArr);
+        } else if (role === "Engineer") {
+            const engrCard = genEngineerCard(employee);
+            cardArr.push(engrCard);
+        } else if (role === "Intern") {
+            const intCard = genInternCard(employee);
+            cardArr.push(intCard);
+        }
+    }
+    return cardArr.join();
+};
 
 
    const genManagerCard = (mgrInfo) => {
@@ -28,7 +29,7 @@
     }
     return `
     <section class="mgr-info">
-    <div class="card mgr-card border-danger text-center"> 
+    <div class="card mgr-card border-danger text-center" style="width: 18rem"> 
     <div>
     MANAGER <br>
     ${mgrInfo.name}
@@ -53,7 +54,7 @@ const genEngineerCard = (engrInfo) => {
     }
     return `
     <section class="engr-info">
-    <div class="card engr-card border-danger text-center">
+    <div class="card engr-card border-danger text-center" style="width: 18rem">
     <div>
     ENGINEER <br>
     ${engrInfo.name}
@@ -79,7 +80,7 @@ const genInternCard = (intInfo) => {
     }
     return `
     <section class="int-info">
-    <div class="card int-card border-danger text-center">
+    <div class="card int-card border-danger text-center" style="width: 18rem">
     <div>
     INTERN <br>
     ${intInfo.name}
@@ -118,17 +119,9 @@ module.exports = templateData => {
       
         <body>
         <div>
-        <h1>MY TEAM</h1>
-        </div>
-
-        
-    
-        ${genManagerCard(manager)}
-        ${genEngineerCard(engineer)}
-        ${genInternCard(intern)}
-    
-         
-          <h2><a href="https://github.com/">Github</a></h2>
+        <h1 class="team bg-danger text-center">MY TEAM</h1>
+        </div> 
+        ${genCards(templateData)}
         </body>
         </html>`;
     

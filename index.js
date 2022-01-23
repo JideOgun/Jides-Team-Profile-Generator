@@ -79,7 +79,7 @@ const generatePage = require('./src/page-template');
       return inquirer.prompt(
         [
         {
-          type: 'checkbox',
+          type: 'list',
           name: 'employeeRole',
           message: 'Add Employees or finish building team',
           choices: ['Engineer', 'Intern'],
