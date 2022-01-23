@@ -28,22 +28,23 @@ const genCards = (templateData) => {
         return '';
     }
     return `
-    <section class="mgr-info">
+    <section class="mgr-info container text-white">
     <div class="card mgr-card border-danger text-center" style="width: 18rem"> 
-    <div>
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item bg-primary">
     MANAGER <br>
     ${mgrInfo.name}
-    </div>
-    <div>
+    </li>
+    <li class="list-group-item bg-dark">
     Office Number : ${mgrInfo.officenumber}
-    </div>
-    <div>
+    </li>
+    <li class="list-group-item bg-dark">
     Employee id: ${mgrInfo.id}
-    </div>
-    <div>
+    </li>
+    <li class="list-group-item bg-dark">
     Email : ${mgrInfo.email}
-    </div>
-    </div>
+    </li>
+    </ul>
     </section>
     `;
 };
@@ -53,23 +54,23 @@ const genEngineerCard = (engrInfo) => {
         return '';
     }
     return `
-    <section class="engr-info">
+    <section class="engr-info container text-white">
     <div class="card engr-card border-danger text-center" style="width: 18rem">
-    <div>
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item bg-primary">
     ENGINEER <br>
-    ${engrInfo.name}
-    
-    </div>
-    <div>
-    ${engrInfo.github}
-    </div>
-    <div>
+    Name: ${engrInfo.name}
+    </li>
+    <li class="list-group-item bg-dark">
+    Github: ${engrInfo.github}
+    </li>
+    <li class="list-group-item bg-dark">
     Employee id: ${engrInfo.id}
-    </div>
-    <div>
+    </li>
+    <li class="list-group-item bg-dark">
     Email : ${engrInfo.email}
-    </div>
-    </div>
+    </li>
+    </ul>
     </section>
     `;
 };
@@ -79,22 +80,23 @@ const genInternCard = (intInfo) => {
         return '';
     }
     return `
-    <section class="int-info">
+    <section class="int-info container text-white">
     <div class="card int-card border-danger text-center" style="width: 18rem">
-    <div>
+    <ul class="list-group list-group-flush">
+    <li class="list-group-item bg-primary">
     INTERN <br>
     ${intInfo.name}
-    </div>
-    <div>
+    </li>
+    <li class="list-group-item bg-dark">
     School: ${intInfo.school}
-    </div>
-    <div>
+    </li>
+    <li class="list-group-item bg-dark">
     Employee Id: ${intInfo.id}
-    </div>
-    <div>
+    </li>
+    <li class="list-group-item bg-dark">
     Email: ${intInfo.email}
-    </div>
-    </div>
+    </li>
+    </ul>
     </section>
     `;
 };
