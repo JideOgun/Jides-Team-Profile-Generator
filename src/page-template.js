@@ -32,7 +32,7 @@ const genCards = (templateData) => {
     <div class="card mgr-card border-danger text-center" style="width: 18rem"> 
     <ul class="list-group list-group-flush">
     <li class="list-group-item bg-primary">
-    MANAGER <br>
+    <i class="fas fa-mug-hot"></i> MANAGER <br>
     ${mgrInfo.name}
     </li>
     <li class="list-group-item bg-dark">
@@ -59,7 +59,7 @@ const genEngineerCard = (engrInfo) => {
     <div class="card engr-card border-danger text-center" style="width: 18rem">
     <ul class="list-group list-group-flush">
     <li class="list-group-item bg-primary">
-    ENGINEER <br>
+    <i class="fas fa-hard-hat"></i> ENGINEER <br>
     Name: ${engrInfo.name}
     </li>
     <li class="list-group-item bg-dark">
@@ -86,7 +86,7 @@ const genInternCard = (intInfo) => {
     <div class="card int-card border-danger text-center" style="width: 18rem">
     <ul class="list-group list-group-flush">
     <li class="list-group-item bg-primary">
-    INTERN <br>
+    <i class="fas fa-graduation-cap"></i> INTERN <br>
     Name: ${intInfo.school}
     </li>
     <li class="list-group-item bg-dark">
@@ -119,7 +119,7 @@ module.exports = templateData => {
           <meta http-equiv="X-UA-Compatible" content="ie=edge">
           <title>TEAM ROSTER</title>
           <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
+          <script src="https://kit.fontawesome.com/520e30761b.js" crossorigin="anonymous"></script>
         </head>
       
         <body>
