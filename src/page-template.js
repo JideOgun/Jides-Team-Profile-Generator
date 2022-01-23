@@ -28,7 +28,7 @@ const genCards = (templateData) => {
         return '';
     }
     return `
-    <section class="mgr-info container text-white .col-md-4 .col-md-offset-4">
+    <section class="mgr-info text-white .col-md-4 .col-md-offset-4">
     <div class="card mgr-card border-danger text-center" style="width: 18rem"> 
     <ul class="list-group list-group-flush">
     <li class="list-group-item bg-primary">
@@ -45,6 +45,7 @@ const genCards = (templateData) => {
     Email : ${mgrInfo.email}
     </li>
     </ul>
+    </div>
     </section>
     `;
 };
@@ -54,7 +55,7 @@ const genEngineerCard = (engrInfo) => {
         return '';
     }
     return `
-    <section class="engr-info container text-white .col-md-4 .col-md-offset-4">
+    <section class="engr-info text-white .col-md-4 .col-md-offset-4">
     <div class="card engr-card border-danger text-center" style="width: 18rem">
     <ul class="list-group list-group-flush">
     <li class="list-group-item bg-primary">
@@ -71,6 +72,7 @@ const genEngineerCard = (engrInfo) => {
     Email : ${engrInfo.email}
     </li>
     </ul>
+    </div>
     </section>
     `;
 };
@@ -80,15 +82,15 @@ const genInternCard = (intInfo) => {
         return '';
     }
     return `
-    <section class="int-info container text-white .col-md-4 .col-md-offset-4">
+    <section class="int-info text-white .col-md-4 .col-md-offset-4">
     <div class="card int-card border-danger text-center" style="width: 18rem">
     <ul class="list-group list-group-flush">
     <li class="list-group-item bg-primary">
     INTERN <br>
-    ${intInfo.name}
+    Name: ${intInfo.school}
     </li>
     <li class="list-group-item bg-dark">
-    School: ${intInfo.school}
+    School: ${intInfo.name}
     </li>
     <li class="list-group-item bg-dark">
     Employee Id: ${intInfo.id}
@@ -97,6 +99,7 @@ const genInternCard = (intInfo) => {
     Email: ${intInfo.email}
     </li>
     </ul>
+    </div>
     </section>
     `;
 };
@@ -125,6 +128,8 @@ module.exports = templateData => {
         </div> 
         <div class="container">
         <div class="row">
+
+
         ${genCards(templateData)}
 
         </div>
