@@ -1,16 +1,15 @@
 
 
-
-
    const genManagerCard = (mgrInfo) => {
     if(!mgrInfo) {
         return '';
     }
     return `
-    <section class="card mgr-info">
+    <section class="mgr-info">
+    <div class="card mgr-card border-danger text-center"> 
     <div>
-    ${mgrInfo.name} <br>
-    MANAGER 
+    MANAGER <br>
+    ${mgrInfo.name}
     </div>
     <div>
     Office Number : ${mgrInfo.officenumber}
@@ -21,11 +20,8 @@
     <div>
     Email : ${mgrInfo.email}
     </div>
-    
-    
+    </div>
     </section>
-    
-    
     `;
 };
 
@@ -34,10 +30,12 @@ const genEngineerCard = (engrInfo) => {
         return '';
     }
     return `
-    <section class="card engr-info">
+    <section class="engr-info">
+    <div class="card engr-card border-danger text-center">
     <div>
+    ENGINEER <br>
     ${engrInfo.name}
-    ENGINEER
+    
     </div>
     <div>
     ${engrInfo.github}
@@ -48,6 +46,7 @@ const genEngineerCard = (engrInfo) => {
     <div>
     Email : ${engrInfo.email}
     </div>
+    </div>
     </section>
     `;
 };
@@ -57,13 +56,14 @@ const genInternCard = (intInfo) => {
         return '';
     }
     return `
-    <section class="card int-info">
+    <section class="int-info">
+    <div class="card int-card border-danger text-center">
     <div>
+    INTERN <br>
     ${intInfo.name}
-    INTERN
     </div>
     <div>
-    Office Number: ${intInfo.officenumber}
+    School: ${intInfo.school}
     </div>
     <div>
     Employee Id: ${intInfo.id}
@@ -71,41 +71,18 @@ const genInternCard = (intInfo) => {
     <div>
     Email: ${intInfo.email}
     </div>
+    </div>
     </section>
     `;
 };
 
 
-
-
-
 module.exports = templateData => {
-    const { name, officenumber, id, github, school, teamArray } = templateData;
+    const [ manager, engineer, intern, ...teamArray ] = templateData;
     console.log(templateData);
-
-    var cardArr = [];
-
+    
     for(var i = 0; i < templateData.length; i++) {
-        
-        const data = templateData[i];
-        const data2 = templateData[i+1];
-        const data3 = templateData[i+2];
-        console.log(data2);
-        const role = data.getRole();
-        
-
-        if(role == 'Manager') {
-            const managerCard = genManagerCard(data);
-            cardArr.push(data);
-        } else if (role == 'Engineer') {
-            const EngineerCard = genEngineerCard(data2);
-            cardArr.push(data2);
-        } else if (role == 'Intern') {
-            const internCard = genInternCard(data3);
-            cardArr.push(data3);
-        }
-
-        return `
+      return `
         <!DOCTYPE html> 
         <html lang="en"> 
         <head>
@@ -121,34 +98,21 @@ module.exports = templateData => {
         <div>
         <h1>MY TEAM</h1>
         </div>
-          
-         
-      
-          
-          ${data.id}
-          ${data.name}
 
-          ${genManagerCard(data)}
-          ${genEngineerCard(data2)}
-          ${genInternCard(data3)}
+        ${genCards(teamArray)}
+    
+        ${genManagerCard(manager)}
+        ${genEngineerCard(engineer)}
+        ${genInternCard(intern)}
+    
          
-          
-         
-         
-          
-      
-      
           <h2><a href="https://github.com/">Github</a></h2>
         </body>
         </html>`;
-
+    
     }
 
- 
     
     
-
-
-  
 };
 

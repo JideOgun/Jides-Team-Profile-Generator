@@ -77,155 +77,112 @@ const generatePage = require('./src/page-template');
     const PromptEmployeeOptions = () => {
 
       return inquirer.prompt(
-        [{
-          type: 'confirm',
-          name: 'employeeconfirm',
-          message: 'Would you like to add employees to your team'
-        },
+        [
         {
           type: 'checkbox',
-          name: 'employees',
+          name: 'employeeRole',
           message: 'Add Employees or finish building team',
           choices: ['Engineer', 'Intern'],
-        }]
-      );
+        },
+        
+        {
+          type: 'input',
+          name: 'name',
+          message: "What is the Employee's name?",
+          validate: engrname => {
+            if(engrname) {
+                return true;
+            } else {
+                console.log("Please enter the Engineer's name!");
+                return false;
+            }
+        }
+        },
+        {
+          type: 'input',
+          name: 'email',
+          message: "What is the Employee's email address?",
+          validate: engremail => {
+            if(engremail) {
+                return true;
+            } else {
+                console.log("Please enter the Engineer's email!");
+                return false;
+            }
+        }
+        },
+        {
+          type: 'input',
+          name: 'id',
+          message: "What is the Employee's employee id?",
+          validate: engrid => {
+            if(engrid) {
+                return true;
+            } else {
+                console.log("Please enter the Engineer's id!");
+                return false;
+            }
+        }
+        },
+       
+        {
+          type: 'input',
+          name: 'github',
+          message: "What is the Employee's github username?",
+          validate: engrgit => {
+            if(engrgit) {
+                return true;
+            } else {
+                console.log("Please enter the Engineer's github username!");
+                return false;
+            }
+        }
+        },
+        {
+          type: 'input',
+          name: 'school',
+          message: "What is the Intern's school?",
+          when: (input) => input.employeeRole === 'Intern',
+          validate: intsch => {
+            if(intsch) {
+                return true;
+            } else {
+                console.log("Please enter the Interns school!");
+                return false;
+            }
+        }
+        },
+        {
+          type: 'confirm',
+          name: 'employeeConfirm',
+          message: 'Would you like to add more employees to your team?',
+          default: false
+        },
+      ]
+      ).then((employeeInfo) => {
+        let { employeeRole, name, id, email, github, school, employeeConfirm } = employeeInfo;
+
+        let employee;
+
+        if(employeeRole == 'Engineer') {
+           employee = new Engineer(name, github, email, id);
+          console.log(employee);
+        } else if (employeeRole == 'Intern') {
+           employee = new Intern(name, school, email, id);
+          console.log(employee);
+        }
+        teamArray.push(employee);
+
+        if(employeeConfirm) {
+          return PromptEmployeeOptions(teamArray);
+        }
+
+      }) 
+      ;
     };
 
-    const PromptEngineerQuestions = (engrData) => {
-      return inquirer.prompt(
-    [  {
-        type: 'input',
-        name: 'name',
-        message: "What is the Engineer's name?",
-        validate: engrname => {
-          if(engrname) {
-              return true;
-          } else {
-              console.log("Please enter the Engineer's name!");
-              return false;
-          }
-      }
-      },
-      {
-        type: 'input',
-        name: 'email',
-        message: "What is the Engineer's email address?",
-        validate: engremail => {
-          if(engremail) {
-              return true;
-          } else {
-              console.log("Please enter the Engineer's email!");
-              return false;
-          }
-      }
-      },
-      {
-        type: 'input',
-        name: 'id',
-        message: "What is the Engineer's employee id?",
-        validate: engrid => {
-          if(engrid) {
-              return true;
-          } else {
-              console.log("Please enter the Engineer's id!");
-              return false;
-          }
-      }
-      },
-     
-      {
-        type: 'input',
-        name: 'github',
-        message: "What is the Engineer's github username?",
-        validate: engrgit => {
-          if(engrgit) {
-              return true;
-          } else {
-              console.log("Please enter the Engineer's github username!");
-              return false;
-          }
-      }
-      },
-    ]).then(({name, github, email, id}) => {
-        const engineer = new Engineer(name, github, email, id);
-        console.log(engineer);
-        teamArray.push(engineer);
-      });
-      
-    };
-    
-    const PromptInternQuestions = (answers) => {
-      return inquirer.prompt([
-      {
-        type: 'input',
-        name: 'name',
-        message: "What is the Intern's name?",
-        validate: intname => {
-          if(intname) {
-              return true;
-          } else {
-              console.log("Please enter the Intern's name!");
-              return false;
-          }
-      }
-      },
-      {
-        type: 'input',
-        name: 'email',
-        message: "What is the Intern's email address?",
-        validate: intemail => {
-          if(intemail) {
-              return true;
-          } else {
-              console.log("Please enter the Intern's email!");
-              return false;
-          }
-      }
-      },
-      {
-        type: 'input',
-        name: 'id',
-        message: "What is the Intern's employee id?",
-        validate: intid => {
-          if(intid) {
-              return true;
-          } else {
-              console.log("Please enter theInterns id!");
-              return false;
-          }
-      }
-      },
-     
-      {
-        type: 'input',
-        name: 'school',
-        message: "What is the Intern's school?",
-        validate: intsch => {
-          if(intsch) {
-              return true;
-          } else {
-              console.log("Please enter the Interns school!");
-              return false;
-          }
-      }
-      },
-    ]
-    ).then(({name, school, email, id}) => {
-      const intern = new Intern(name, school, email, id);
-      console.log(intern);
-      teamArray.push(intern);
-    });
-    
-    
-    };
-
-
-    PromptManagerQuestions().then(PromptEmployeeOptions).then (({employees}) =>  {
-     console.log(employees[0]);
-     if(employees[0] === 'Engineer') {
-     PromptEngineerQuestions().then(answer => {
+    PromptManagerQuestions().then(PromptEmployeeOptions).then ((data) =>  {
       return generatePage(teamArray);
-      
      }).then(HTMLpage => {
       return writeFile(HTMLpage);
   }).then(writeFileResponse => {
@@ -234,24 +191,6 @@ const generatePage = require('./src/page-template');
   }).catch(err => {
       console.log(err);
 });  
-      }
-    else if (employees[0] === 'Intern') {  
-            PromptInternQuestions().then(answers => {
-              return generatePage(teamArray);
-            }).then(HTMLpage => {
-              return writeFile(HTMLpage);
-          }).then(writeFileResponse => {
-              console.log(writeFileResponse);
-              return ;
-          }).catch(err => {
-              console.log(err);
-              });
-            }
-    
-    else {
-       return ;
-     }
-     });
      
     
 
