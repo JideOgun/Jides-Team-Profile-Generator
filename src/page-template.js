@@ -124,7 +124,7 @@ module.exports = templateData => {
       
         <body>
         <div>
-        <h1 class="team bg-danger text-center">MY TEAM</h1>
+        <h1 class="team bg-danger text-center text-white p-3">MY TEAM</h1>
         </div> 
         <div class="container">
         <div class="row">
