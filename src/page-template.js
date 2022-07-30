@@ -1,33 +1,31 @@
-
 const genCards = (templateData) => {
-    var cardArr = [];
+  var cardArr = [];
 
-    for(var i = 0; i < templateData.length; i++) {
-        const employee = templateData[i];
-        const role = employee.getRole();
+  for (var i = 0; i < templateData.length; i++) {
+    const employee = templateData[i];
+    const role = employee.getRole();
 
-        if(role === 'Manager') {
-            const manCard = genManagerCard(employee);
+    if (role === "Manager") {
+      const manCard = genManagerCard(employee);
 
-            cardArr.push(manCard);
-            console.log(cardArr);
-        } else if (role === "Engineer") {
-            const engrCard = genEngineerCard(employee);
-            cardArr.push(engrCard);
-        } else if (role === "Intern") {
-            const intCard = genInternCard(employee);
-            cardArr.push(intCard);
-        }
+      cardArr.push(manCard);
+      console.log(cardArr);
+    } else if (role === "Engineer") {
+      const engrCard = genEngineerCard(employee);
+      cardArr.push(engrCard);
+    } else if (role === "Intern") {
+      const intCard = genInternCard(employee);
+      cardArr.push(intCard);
     }
-    return cardArr.join();
+  }
+  return cardArr.join();
 };
 
-
-   const genManagerCard = (mgrInfo) => {
-    if(!mgrInfo) {
-        return '';
-    }
-    return `
+const genManagerCard = (mgrInfo) => {
+  if (!mgrInfo) {
+    return "";
+  }
+  return `
     <section class="mgr-info text-white .col-md-4 .col-md-offset-4">
     <div class="card mgr-card border-danger text-center" style="width: 18rem"> 
     <ul class="list-group list-group-flush">
@@ -51,10 +49,10 @@ const genCards = (templateData) => {
 };
 
 const genEngineerCard = (engrInfo) => {
-    if(!engrInfo) {
-        return '';
-    }
-    return `
+  if (!engrInfo) {
+    return "";
+  }
+  return `
     <section class="engr-info text-white .col-md-4 .col-md-offset-4">
     <div class="card engr-card border-danger text-center" style="width: 18rem">
     <ul class="list-group list-group-flush">
@@ -78,10 +76,10 @@ const genEngineerCard = (engrInfo) => {
 };
 
 const genInternCard = (intInfo) => {
-    if(!intInfo) {
-        return '';
-    }
-    return `
+  if (!intInfo) {
+    return "";
+  }
+  return `
     <section class="int-info text-white .col-md-4 .col-md-offset-4">
     <div class="card int-card border-danger text-center" style="width: 18rem">
     <ul class="list-group list-group-flush">
@@ -104,13 +102,12 @@ const genInternCard = (intInfo) => {
     `;
 };
 
+module.exports = (templateData) => {
+  const [manager, engineer, intern, ...teamArray] = templateData;
+  console.log("this the team " + teamArray);
 
-module.exports = templateData => {
-    const [ manager, engineer, intern, ...teamArray ] = templateData;
-    console.log(teamArray);
-    
-    for(var i = 0; i < templateData.length; i++) {
-      return `
+  for (var i = 0; i < templateData.length; i++) {
+    return `
         <!DOCTYPE html> 
         <html lang="en"> 
         <head>
@@ -136,10 +133,5 @@ module.exports = templateData => {
         </div>
         </body>
         </html>`;
-    
-    }
-
-    
-    
+  }
 };
-
